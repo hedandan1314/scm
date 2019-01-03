@@ -1,0 +1,33 @@
+body .layer-ext-yourskin .layui-layer-title{
+    background-color: #009688;
+	color: #fff;
+}
+body .layui-ext-yourskin .layui-layer-btn{
+	 background-color: #009688;
+	color: #fff;
+}
+body .layui-ext-yourskin .layui-layer-btn .layui-layer-btn0{
+	 background-color: #009688!important;
+	     border-color: #1E9FFF!important;
+	color: #fff;
+}
+body .layui-ext-yourskin .layui-layer-btn a{
+	 background-color: #009688;
+	color: #fff;
+}
+body .layui-ext-yourskin .layui-layer .layui-layer-dialog {
+    min-width: 100px!important;
+    /*background-color: #000;
+    filter: alpha(opacity=60);*/
+    background-color: rgba(0,0,0,.6);
+    color: #fff;
+    border: none;
+    }
+.layui-ext-yourskin i[close] {
+    position: absolute;
+    padding: 5px;
+    right: 10px;
+    top: 12px;
+    color: #fff;
+    cursor: pointer;
+}

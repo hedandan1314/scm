@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>库存管理类</title>
+		<link rel="stylesheet" type="text/css" href="../../libs/layui/css/layui.css" />
+	</head>
+
+	<body>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<span class="layui-breadcrumb">
+  <a href="../Homepage/control.html">主页</a>
+   <a><cite>系统设置</cite></a>
+   <a><cite>我的设置</cite></a>
+   <a><cite>基本资料</cite></a>
+</span></div>
+
+		</div>
+		<div style="padding: 15px;    margin-top: -15px;">
+			<div class="layui-card">
+				<div class="layui-card-header">设置我的资料</div>
+				<div class="layui-card-body">
+					<form class="layui-form" lay-filter="myInfo">
+						<!--我的角色-->
+						<div class="layui-form-item">
+							<label class="layui-form-label">我的角色</label>
+							<div class="layui-input-inline">
+								<select name="role" lay-verify="required">
+									<option value="1" selected="selected">超级管理员</option>
+									<option value="2" disabled="disabled">普通管理员</option>
+									<option value="3" disabled="disabled">审核员</option>
+									<option value="4" disabled="disabled">操作员</option>
+								</select>
+							</div>
+							<div class="layui-form-mid layui-word-aux">当前角色不可更改为其它角色</div>
+						</div>
+						<!--用户名-->
+						<div class="layui-form-item">
+							<label class="layui-form-label">用户名</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" readonly>
+							</div>
+							<div class="layui-form-mid layui-word-aux">不可修改,用于后台登入名</div>
+						</div>
+						<!--昵称-->
+						<div class="layui-form-item">
+							<label class="layui-form-label">昵称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="nichen" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<!--性别-->
+						<div class="layui-form-item">
+							<label class="layui-form-label">性别</label>
+							<div class="layui-input-block">
+								<input type="radio" name="sex" value="男" title="男" checked="">
+								<input type="radio" name="sex" value="女" title="女">
+							</div>
+						</div>
+						<!--手机-->
+						<div class="layui-form-item">
+							<label class="layui-form-label">手机</label>
+							<div class="layui-input-inline">
+								<input type="text" name="tel" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<!--邮箱-->
+						<div class="layui-form-item">
+							<label class="layui-form-label">邮箱</label>
+							<div class="layui-input-inline">
+								<input type="text" name="email" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<!--备注-->
+						<div class="layui-form-item layui-form-text">
+							<label class="layui-form-label">备注</label>
+							<div class="layui-input-block">
+								<textarea placeholder="请输入内容" class="layui-textarea" name="desc"></textarea>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" lay-submit="" lay-filter="demo1">确认修改</button>
+								<button type="reset" class="layui-btn layui-btn-primary">重新填写</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script src="../../libs/jquery/jquery-1.10.2.js"></script>
+		<script src="../../libs/layui/layui.js"></script>
+		<script>
+			//JavaScript代码区域
+			layui.use(['element', 'table','form'], function() {
+				var element = layui.element,
+					table = layui.table,
+					 form = layui.form;
+				//表单初始赋值
+				form.val('myInfo', {
+					"name": "DanDan" // "name": "value"
+						,						
+					"nichen":"丹丹",
+					"sex": "女",
+					
+				})
+			});
+		</script>
+	</body>
+
+</html>

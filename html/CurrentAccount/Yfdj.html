@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>应付登记</title>
+		<link rel="stylesheet" type="text/css" href="../../libs/layui/css/layui.css" />
+	</head>
+
+	<body>
+		<!--添加的弹窗内容-->
+		<div id="addContent" style="display: none; padding: 20px;height: 450px;" class="layui-form">
+			<div class="layui-form-item">
+				<label class="layui-form-label">单据号</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nichen" autocomplete="off" class="layui-input" value="YS18121810001" readonly="">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">供货商名称</label>
+				<div class="layui-input-inline">
+					<select name="kehu" lay-verify="required" lay-search="" id='kehuName'>
+						<option value="">请选择</option>
+						<option value="1">供货商甲</option>
+						<option value="2">供货商乙</option>
+						<option value="3">供货商丙</option>
+						<option value="4">供货商丁</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">开单日期</label>
+				<div class="layui-input-inline">
+					<input type="text" class="layui-input" id="test19" placeholder="yyyy-MM-dd">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">应付金额</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nichen" autocomplete="off" class="layui-input" lay-verify="required" id='ysje'>
+				</div>
+				<div class="layui-form-mid layui-word-aux">元</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">备注</label>
+				<div class="layui-input-block">
+					<textarea class="layui-textarea" name="desc"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">审核状态</label>
+				<div class="layui-input-inline">
+					<input type="checkbox" lay-verify="required" lay-filter="status" name="status" lay-skin="switch" lay-text="已审核|待审核" id='shzt'>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"></label>
+				<div class="layui-input-inline">
+					<input type="button" lay-submit="" lay-filter="layuiadmin-app-form-submit" value="确认" class="layui-btn" id='subBtn'>
+				</div>
+			</div>
+
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<span class="layui-breadcrumb">
+  <a href="../Homepage/control.html">主页</a>
+   <a><cite>往来账款</cite></a>
+   <a><cite>应付登记</cite></a>
+</span></div>
+		</div>
+
+		<!--主体内容-->
+		<div style="padding: 15px;    margin-top: -15px;">
+			<div class="layui-card">
+				<!--模糊查询-->
+				<div class="layui-card-header layui-form" style="    padding-top: 15px;
+    padding-bottom: 15px;">
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">日期范围</label>
+							<div class="layui-input-inline">
+								<input type="text" class="layui-input" id="test6" placeholder=" - ">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<button class="layui-btn layuiadmin-btn-list" data-type="reload">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<!--表格-->
+				<div class="layui-card-body">
+					<!--<div style="padding-bottom: 10px;">
+						<button class="layui-btn">
+  								<i class="layui-icon">&#xe608;</i> 添加
+						</button>
+					</div>-->
+					<div class="layui-form">
+						<!--表格部分-->
+						<div class="layui-table-box">
+							<table class="layui-hide" id="test" lay-filter="test">
+
+							</table>
+							<!--表格头部工具栏-->
+							<script type="text/html" id="toolbarDemo">
+								<div class="layui-btn-container">
+									<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+									<button class="layui-btn layui-btn-sm" lay-event="">删除</button>
+									<button class="layui-btn layui-btn-sm" lay-event="" id="addBtn">添加</button>
+								</div>
+							</script>
+							<!--操作-->
+							<script type="text/html" id="barDemo">
+								<!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
+								<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">
+									<i class="layui-icon layui-icon-edit"></i> 编辑
+								</a>
+								<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">
+									<i class="layui-icon layui-icon-delete"></i> 删除
+								</a>
+							</script>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../../libs/jquery/jquery-1.10.2.js"></script>
+		<script src="../../libs/layui/layui.js"></script>
+		<script>
+			//JavaScript代码区域
+			layui.use(['element', 'table', 'laydate', 'layer', 'jquery'], function() {
+				var element = layui.element,
+					table = layui.table,
+					laydate = layui.laydate,
+					layer = layui.layer,
+					$ = layui.jquery
+				table.render({
+					elem: '#test',
+					//					url: '/test/table/demo3.json' //写后台接口交互使用
+					//						,
+					toolbar: true, //显示工具行
+					title: '用户数据表',
+					totalRow: true, //显示合计行
+					page: true, //开启分页
+					limits: [10, 15, 20, 25, 30],
+					toolbar: '#toolbarDemo',
+
+					cols: [
+						[{
+								type: 'checkbox',
+								fixed: 'left'
+							},
+							{
+								field: 'id',
+								title: '单据号',
+								width: '13%',
+								fixed: 'left',
+								unresize: true,
+								sort: true,
+								totalRowText: '合计',
+								align: 'center'
+							}, {
+								field: 'username',
+								title: '开单日期',
+								width: '18%',
+								edit: 'text',
+								align: 'center'
+							}, {
+								field: 'experience',
+								title: '供货商名称',
+								width: '12%',
+
+								align: 'center'
+							}, {
+								field: 'logins',
+								title: '应付金额',
+								width: '10%',
+								sort: true,
+								edit: 'text',
+								totalRow: true,
+								align: 'center'
+							}, {
+								field: 'city',
+								title: '操作员',
+								width: '15%',
+								align: 'center'
+							},
+							{
+								field: 'status',
+								title: '审核状态',
+								width: '12%',
+								align: 'center'
+							},
+							{
+								fixed: 'right',
+								title: '操作',
+								toolbar: '#barDemo',
+								width: '18%',
+								align: 'center'
+							}
+						]
+					],
+					data: [{
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-xs'>已审核</button>",
+						}, {
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+
+						}, {
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						}, {
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						}, {
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						}, {
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						}, {
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						}, {
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						},
+						{
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						},
+						{
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						},
+						{
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						},
+						{
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						},
+						{
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						},
+						{
+							"id": "10001",
+							"username": "杜甫",
+							"logins": "100",
+							"experience": "116",
+							"city": "浙江杭州",
+							"status": "<button class='layui-btn layui-btn-primary layui-btn-xs'>待审核</button>"
+						}
+					],
+					//
+					//					response: {
+					//						statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+					//					},
+					//					parseData: function(res) { //将原始数据解析成 table 组件所规定的数据
+					//						return {
+					//							"code": res.status, //解析接口状态
+					//							"msg": res.message, //解析提示文本
+					//							"count": res.total, //解析数据长度
+					//							"data": res.rows.item //解析数据列表
+					//						};
+					//					}
+				});
+				//表格头工具栏事件
+				table.on('toolbar(test)', function(obj) {
+					var checkStatus = table.checkStatus(obj.config.id);
+					switch(obj.event) {
+						case 'getCheckLength':
+							var data = checkStatus.data;
+							layer.msg('选中了：' + data.length + ' 个');
+							break;
+					};
+				});
+				//监听行工具事件
+				table.on('tool(test)', function(obj) {
+					var data = obj.data;
+					//console.log(obj)
+					if(obj.event === 'del') {
+						layer.confirm('确定删除此条应收款吗？', function(index) {
+							obj.del();
+							layer.close(index);
+						});
+					} else if(obj.event === 'edit') {
+						layer.open({
+						type: 1,
+						title: ['添加应付款', 'font-size:14px;'],
+						area: ['550px', '550px'], //宽高
+						shadeClose: true,
+						content: $('#addContent'),						
+					},function(value, index){
+						obj.update({
+								nichen: value
+							});
+							layer.close(index);
+					});
+//						layer.prompt({
+//							formType: 2,
+//							value: data.email
+//						}, function(value, index) {
+//							obj.update({
+//								email: value
+//							});
+//							layer.close(index);
+//						});
+					}
+				});
+				//日期范围
+				laydate.render({
+					elem: '#test6',
+					range: true
+				});
+				laydate.render({
+					elem: '#test19',
+					value: new Date(),
+					isInitValue: true
+				});
+				//添加弹窗
+				layer.config({
+					extend: 'myskin/style.css', //加载您的扩展样式
+					skin: 'layer-ext-yourskin'
+				});
+				//点击添加按钮弹出弹窗
+				$('#addBtn').on("click", function() {
+					//var index=layer.load();//加载load
+					layer.open({
+						type: 1,
+						title: ['添加应付款', 'font-size:14px;'],
+						area: ['550px', '550px'], //宽高
+						shadeClose: true,
+						content: $('#addContent'),
+						success: function(addContent) {
+							var mask = $(".layui-layer-shade");
+							mask.appendTo(addContent.parent());
+							//其中：layero是弹层的DOM对象
+
+						}
+					});
+				})
+				//点击确认按钮关闭弹窗
+				$('#subBtn').on("click", function() {
+					//					if($('#kehuName').attr('lay-verify', '') && $('#ysje').attr('lay-verify', '')) {
+					//						layer.closeAll();
+					//					}
+
+				})
+			});
+		</script>
+	</body>
+
+</html>
+

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>控制台</title>
+		<link rel="stylesheet" type="text/css" href="../../libs/layui/css/layui.css" />
+		<style type="text/css">
+			.layadmin-carousel {
+				background-color: #fff;
+			}
+			
+			.layui-carousel>[carousel-item] {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			
+			.layui-col-space10>* {
+				padding: 5px!important;
+			}
+			
+			.layui-col-xs6 {
+				width: 25%;
+				float: left;
+				position: relative;
+				display: block;
+				box-sizing: border-box;
+			}
+			
+			.layadmin-backlog .layadmin-backlog-body {
+				display: block;
+				padding: 10px 15px;
+				background-color: #f8f8f8;
+				color: #999;
+				border-radius: 2px;
+				transition: all .3s;
+				-webkit-transition: all .3s;
+			}
+			
+			.layadmin-backlog-body h3 {
+				padding-bottom: 10px;
+				font-size: 13px;
+			}
+			
+			.layadmin-backlog-body p cite {
+				font-style: normal;
+				font-weight: 300;
+				color: #009688;
+				text-align: center!important;
+			}
+			
+			.layadmin-carousel .layui-carousel,
+			.layadmin-carousel>[carousel-item]>* {
+				background-color: #fff;
+			}
+			
+			.layadmin-carousel .layui-carousel-ind {
+				position: absolute;
+				top: -41px;
+				text-align: right;
+			}
+			#caigou .layadmin-carousel .layui-carousel-ind{
+				position: absolute;
+				top: -46px;
+				text-align: right;
+			}
+			#xiaoshou .layadmin-carousel .layui-carousel-ind{
+				position: absolute;
+				top: -46px;
+				text-align: right;
+			}
+			.layadmin-carousel .layui-carousel-ind ul {
+				background: 0 0;
+			}
+			
+			.layadmin-carousel .layui-carousel-ind li.layui-this {
+				background-color: #999;
+			}
+			
+			.layadmin-carousel .layui-carousel-ind li {
+				background-color: #e2e2e2;
+			}
+			
+			[href] {
+				cursor: pointer;
+			}
+			
+			/*.layadmin-takerates {
+				padding-top: 5px;
+			}
+			
+			.layadmin-takerates .layui-progress h3 {
+				position: absolute;
+				right: 0;
+				top: -35px;
+				color: #999;
+				font-size: 14px;
+			}
+			
+			.layadmin-takerates .layui-progress-text {
+				top: -35px;
+				line-height: 26px;
+				font-size: 26px;
+			}
+			
+			..layadmin-takerates .layui-progress {
+				margin: 50px 0 60px;
+			}*/
+			
+			.layadmin-shortcut li .layui-icon {
+				display: inline-block;
+				width: 100%;
+				height: 60px;
+				line-height: 60px;
+				text-align: center;
+				border-radius: 2px;
+				font-size: 30px;
+				background-color: #F8F8F8;
+				color: #333;
+				transition: all .3s;
+				-webkit-transition: all .3s;
+			}
+			
+			.layadmin-shortcut li cite {
+				position: relative;
+				top: 2px;
+				display: block;
+				color: #666;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				font-size: 14px;
+			}
+			
+			.layadmin-shortcut li {
+				text-align: center;
+			}
+			
+			.layadmin-takerates .layui-progress {
+				margin: 50px 0 60px;
+			}
+			
+			.layadmin-takerates .layui-progress:last-child {
+				margin-bottom: 10px;
+			}
+			
+			.layadmin-jiankong .layui-progress {
+				position: relative;
+				height: 6px;
+				border-radius: 20px;
+				background-color: #e2e2e2;
+			}
+			
+			.layadmin-takerates .layui-progress h3 {
+				position: absolute;
+				right: 0;
+				top: -35px;
+				color: #999;
+				font-size: 14px;
+			}
+			
+			#jiankong {
+				position: relative;
+				width: 100%;
+				height: 26%;
+				overflow: hidden;
+			}
+			
+			.stats__item {
+				padding-left: 13px;
+				padding-right: 13px;
+				margin-top: 21px;
+				font-size: 14px;
+				color: #7a7a7a;
+			}
+			
+			.ik-pull-right {
+				float: right;
+			}
+			
+			.stats__count {
+				font-size: 18px;
+				color: #333;
+				vertical-align: middle;
+				cursor: pointer;
+			}
+			
+			.stats__badge {
+				min-width: 48px;
+				line-height: 16px;
+				text-align: center;
+				margin-left: 14px;
+				margin-top: 3px;
+				font-size: 12px;
+				border-radius: 2px;
+				vertical-align: middle;
+				display: inline-block;
+				border: 1px solid #009688;
+				;
+				background-color: #F8F8F8;
+				color: #009688;
+				;
+			}
+			
+			.antian {
+				background-color: #fff!important;
+			}
+			
+			.caigouStyle {
+				border-radius: 0;
+				width: 22px;
+				height: 22px;
+				line-height: 20px;
+				font-size: 13px;
+				text-align: center;
+				background-color: green;
+				color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!--内容主体内容-->
+		<!--<div class="layui-body">-->
+		<div class="layui-col-md12" style="padding: 15px;">
+			<!--信息统计-->
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-sm6 layui-col-md3" id="caigou">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							采购
+						</div>
+						<div class="layui-card-body ">
+							<div class="layui-carousel layadmin-carousel layadmin-backlog" lay-anim id="test4" lay-filter="test4">
+								<div carousel-item>
+									<div id="">
+										<p class="stats__item">
+											<span>
+									昨天
+									</span>
+											<span class="ik-pull-right stats__badge">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+										<p class="stats__item">
+											<span>
+									今天
+									</span>
+											<span class="ik-pull-right stats__badge">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+									</div>
+									<div id="">
+										<p class="stats__item">
+											<span>
+									上周
+									</span>
+											<span class="ik-pull-right stats__badge" style="border: 1px solid #1E9FFF;
+  
+    color: #1E9FFF;">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+										<p class="stats__item">
+											<span>
+									本周
+									</span>
+											<span class="ik-pull-right stats__badge" style="border: 1px solid #1E9FFF;
+  
+    color: #1E9FFF;">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+									</div>
+									<div id="">
+										<p class="stats__item">
+											<span>
+									上月
+									</span>
+											<span class="ik-pull-right stats__badge"style="border: 1px solid #2F4056;
+  
+    color: #2F4056;">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+										<p class="stats__item">
+											<span>
+									本月
+									</span>
+											<span class="ik-pull-right stats__badge" style="border: 1px solid #2F4056;
+  
+    color:#2F4056;">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-sm6 layui-col-md3" id="xiaoshou">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							销售
+						</div>
+						<div class="layui-card-body ">
+							<div class="layui-carousel layadmin-carousel layadmin-backlog" lay-anim id="test5" lay-filter="test5">
+								<div carousel-item>
+								<div id="">
+									<p class="stats__item">
+											<span>
+									昨天
+									</span>
+											<span class="ik-pull-right stats__badge">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+										<p class="stats__item">
+											<span>
+									今天
+									</span>
+											<span class="ik-pull-right stats__badge">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+								</div>
+								<div id="">
+									<p class="stats__item">
+											<span>
+									上周
+									</span>
+											<span class="ik-pull-right stats__badge" style="border: 1px solid #1E9FFF;
+  
+    color: #1E9FFF;">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+										<p class="stats__item">
+											<span>
+									本周
+									</span>
+											<span class="ik-pull-right stats__badge" style="border: 1px solid #1E9FFF;
+  
+    color: #1E9FFF;">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+								</div>
+								<div id="">
+									<p class="stats__item">
+											<span>
+									上月
+									</span>
+											<span class="ik-pull-right stats__badge" style="border: 1px solid #2F4056;
+  
+    color: #2F4056;">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+										<p class="stats__item">
+											<span>
+									本月
+									</span>
+											<span class="ik-pull-right stats__badge" style="border: 1px solid #2F4056;
+  
+    color: #2F4056;">
+										0&nbsp;笔
+									</span>
+											<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+										</p>
+								</div>
+</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							库存
+						</div>
+						<div class="layui-card-body ">
+							<div class="layuiadmin-card-list" lay-anim id="test6" lay-filter="test6">
+								<p class="stats__item">
+									<span>
+									总量
+									</span>
+									<!--<span class="ik-pull-right stats__badge"style="border: 1px solid #FF5722;color: #FF5722;">
+										0笔
+									</span>-->
+									<span class=" ik-pull-right stats__count ">
+										 0.00
+									</span>
+
+								</p>
+								<p class="stats__item">
+									<span>
+									总成本
+									</span>
+									<!--<span class="ik-pull-right stats__badge"style="border: 1px solid #FF5722;color: #FF5722;">
+										0笔
+									</span>-->
+									<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							欠款
+						</div>
+						<div class="layui-card-body ">
+							<div class="layuiadmin-card-list" lay-anim id="test7" lay-filter="test7">
+								<p class="stats__item">
+									<span>
+									客户
+									</span>
+									<!--<span class="ik-pull-right stats__badge" style="border: 1px solid #FFB800;color: #FFB800;">
+										0笔
+									</span>-->
+									<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+								</p>
+								<p class="stats__item">
+									<span>
+									供应商
+									</span>
+									<!--<span class="ik-pull-right stats__badge" style="border: 1px solid #FFB800;color: #FFB800;">
+										0笔
+									</span>-->
+									<span class=" ik-pull-right stats__count ">
+										￥ 0.00
+									</span>
+
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-row layui-col-space15">
+					<!--待办事项-->
+					<div class="layui-col-md7">
+						<div class="layui-card">
+							<div class="layui-card-header">待办事项</div>
+							<div class="layui-card-body">
+								<div class="layui-carousel layadmin-carousel layadmin-backlog" lay-anim id="test1" lay-filter="test1">
+									<div carousel-item>
+										<ul class="layui-row layui-col-space10 layui-this">
+											<li class="layui-col-xs6">
+												<a href="../InboundManage/Cgrk2.html" class="layadmin-backlog-body">
+													<h3>待审采购单</h3>
+													<p><cite>66</cite></p>
+												</a>
+											</li>
+											<li class="layui-col-xs6">
+
+												<a href="../InboundManage/Scrk2.html" class="layadmin-backlog-body">
+													<h3>待审入库单</h3>
+													<p><cite>66</cite></p>
+												</a>
+											</li>
+											<li class="layui-col-xs6">
+												<a href="../InboundManage/Cgth2.html" class="layadmin-backlog-body">
+													<h3>退货审核</h3>
+													<p><cite>66</cite></p>
+												</a>
+											</li>
+											<li class="layui-col-xs6">
+												<a href="../InboundManage/Cpfg2.html" class="layadmin-backlog-body">
+													<h3>待审次品单据</h3>
+													<p><cite>66</cite></p>
+												</a>
+											</li>
+											<li class="layui-col-xs6">
+
+												<a href="../OutboundManage/Spxs2.html" class="layadmin-backlog-body">
+													<h3>待审销售单</h3>
+													<p><cite>66</cite></p>
+												</a>
+											</li>
+											<li class="layui-col-xs6">
+												<a href="../OutboundManage/Bmly2.html" class="layadmin-backlog-body">
+													<h3>待审领用单</h3>
+													<p><cite>66</cite></p>
+												</a>
+											</li>
+											<li class="layui-col-xs6">
+
+												<a href="../OutboundManage/Gkth2.html" class="layadmin-backlog-body">
+													<h3>待审退货单</h3>
+													<p><cite>66</cite></p>
+												</a>
+											</li>
+											<li class="layui-col-xs6">
+												<a href="../OutboundManage/Bmth2.html" class="layadmin-backlog-body">
+													<h3>待审退回单</h3>
+													<p><cite>66</cite></p>
+												</a>
+											</li>
+										</ul>
+										<ul class="layui-row layui-col-space10">
+
+											<li class="layui-col-xs6">
+
+												<a href="../InventoryManage/Kcpd2.html" class="layadmin-backlog-body">
+													<h3>待审盘点单</h3>
+													<p><cite>66</cite></p>
+												</a>
+											</li>
+
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					
+						<!--实时监控-->
+					<div class="layui-col-md5">
+						<div class="layui-card">
+							<div class="layui-card-header">库存实时监控
+							<span id="">
+								<a href="../InventoryManage/Kcbj1.html" style="float: right;color: #009688;font-size: 12px;">查看详情</a>
+							</span>
+							</div>
+							<div class="layui-card-body ">
+								<div  lay-anim id="test3" lay-filter="test3">
+								<ul class="layui-row layui-col-space10" style="height: 100%;width: 100%;position: relative;overflow: hidden;">
+
+											<li style="width: 50%;float: left;position: relative;display: block;box-sizing: border-box;">
+													<a href="javascript:;"style="display: block;    padding: 55px;color: #999;border-radius: 2px;background-color: #f8f8f8;">
+													<h3 style="    padding-bottom: 45px;text-align: center;font-size: 18px;">高库存预警数</h3>
+													<p style="text-align: center;color: #FF5722;font-size: 37px;"><cite>66</cite></p>	</a>											
+											</li>
+												<li style="width: 50%;float: left;position: relative;display: block;box-sizing: border-box">												
+														<a href="javascript:;"style="display: block;    padding: 55px;color: #999;border-radius: 2px;background-color: #f8f8f8;">
+														<h3 style="    padding-bottom: 45px;text-align: center;font-size: 18px;">低库存预警数</h3>
+													<p style="text-align: center;color: #FF5722;font-size: 37px;"><cite>10</cite></p>		
+													</a>										
+											</li>
+										</ul>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-row layui-col-space15">
+					<!--数据概览-->
+					<div class="layui-col-md7">
+						<div class="layui-card layui-col-md12">
+							<div class="layui-card-header">数据概览</div>
+							<div class="layui-card-body layadmin-takerates " id='main' style="height:400px;">
+							</div>
+						</div>
+					</div>
+					<!--快捷方式-->
+					<div class="layui-col-md5">
+						<div class="layui-card">
+							<div class="layui-card-header">快捷方式</div>
+							<div class="layui-card-body">
+								<div class="layui-carousel layadmin-carousel layadmin-shortcut" lay-anim id="test2" lay-filter="test2">
+									<div carousel-item>
+										<ul class="layui-row layui-col-space10 layui-this">
+											<li class="layui-col-xs3">
+												<a href="../InboundManage/Cgrk2.html" class="layadmin-backlog-body">
+													<i class="layui-icon layui-icon-console"></i>
+													<cite>主页一</cite>
+												</a>
+											</li>
+											<li class="layui-col-xs3">
+
+												<a href="../InboundManage/Scrk2.html" class="layadmin-backlog-body">
+													<i class="layui-icon layui-icon-console"></i>
+													<cite>主页一</cite>
+												</a>
+											</li>
+											<li class="layui-col-xs3">
+												<a href="../InboundManage/Cgth2.html" class="layadmin-backlog-body">
+													<i class="layui-icon layui-icon-console"></i>
+													<cite>主页一</cite>
+												</a>
+											</li>
+											<li class="layui-col-xs3">
+												<a href="../InboundManage/Cpfg2.html" class="layadmin-backlog-body">
+													<i class="layui-icon layui-icon-console"></i>
+													<cite>主页一</cite>
+												</a>
+											</li>
+											<li class="layui-col-xs3">
+
+												<a href="../OutboundManage/Spxs2.html" class="layadmin-backlog-body">
+													<i class="layui-icon layui-icon-console"></i>
+													<cite>主页一</cite>
+												</a>
+											</li>
+											<li class="layui-col-xs3">
+												<a href="../OutboundManage/Bmly2.html" class="layadmin-backlog-body">
+													<i class="layui-icon layui-icon-console"></i>
+													<cite>主页一</cite>
+												</a>
+											</li>
+											<li class="layui-col-xs3">
+
+												<a href="../OutboundManage/Gkth2.html" class="layadmin-backlog-body">
+													<i class="layui-icon layui-icon-console"></i>
+													<cite>主页一</cite>
+												</a>
+											</li>
+											<li class="layui-col-xs3">
+												<a href="../OutboundManage/Bmth2.html" class="layadmin-backlog-body">
+													<i class="layui-icon layui-icon-console"></i>
+													<cite>主页一</cite>
+												</a>
+											</li>
+										</ul>
+										<ul class="layui-row layui-col-space10">
+
+											<li class="layui-col-xs3">
+
+												<a href="../InventoryManage/Kcpd2.html" class="layadmin-backlog-body">
+													<i class="layui-icon layui-icon-console"></i>
+													<cite>主页一</cite>
+												</a>
+											</li>
+
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!--</div>-->
+				<script src="../../libs/jquery/jquery-1.10.2.js"></script>
+				<script src="../../libs/layui/layui.js"></script>
+				<script src='../../libs/echarts/echarts.common.min.js'></script>
+				<script src="../../libs/echarts/pattern.js"></script>
+				<script>
+					layui.use(['element', 'form', 'carousel', 'layer'], function() {
+						var element = layui.element,
+							$ = layui.jquery,
+							form = layui.form,
+							layer = layui.layer,
+							carousel = layui.carousel;
+
+						//建造实例
+						carousel.render({//待办事项
+							elem: '#test1',
+							width: '100%', //设置容器宽度
+							height:220,
+
+							arrow: 'none', //不显示箭头
+							autoplay: false,
+							//不自动切换
+							indicator: 'inside' //指示器位置，可选outside,none						
+						});
+						carousel.render({
+							elem: '#test2',
+							width: '100%', //设置容器宽度
+							height: 400,
+							arrow: 'none', //不显示箭头
+							autoplay: false,
+							//不自动切换
+							indicator: 'inside' //指示器位置，可选outside,none						
+						});
+						carousel.render({
+							elem: '#test3',
+							width: '100%', //设置容器宽度
+							height: 225,
+							arrow: 'none', //不显示箭头
+							autoplay: false,
+							//不自动切换
+							indicator: 'inside' //指示器位置，可选outside,none						
+						});
+						carousel.render({
+							elem: '#test4',
+							width: '100%', //设置容器宽度
+							height: 120,
+							anim: 'fade',
+							arrow: 'none', //不显示箭头
+							autoplay: false,
+							//不自动切换
+							indicator: 'inside' //指示器位置，可选outside,none						
+						});
+						carousel.render({
+							elem: '#test5',
+							width: '100%', //设置容器宽度
+							height: 120,
+							anim: 'fade',
+							arrow: 'none', //不显示箭头
+							autoplay: false,
+							//不自动切换
+							indicator: 'inside' //指示器位置，可选outside,none						
+						});
+						carousel.render({
+							elem: '#test6',
+							width: '100%', //设置容器宽度
+							height: 99,
+							arrow: 'none', //不显示箭头
+							autoplay: false,
+							//不自动切换
+							indicator: 'inside' //指示器位置，可选outside,none						
+						});
+						carousel.render({
+							elem: '#test7',
+							width: '100%', //设置容器宽度
+							height: 99,
+							arrow: 'none', //不显示箭头
+							autoplay: false,
+							//不自动切换
+							indicator: 'inside' //指示器位置，可选outside,none						
+						});
+						$('#caigou .layadmin-carousel .layui-carousel-ind li').eq(0).css({
+								"border-radius": "0",
+				'width': '22px',
+				'height': '22px',
+				'line-height': '20px',
+				'font-size':'13px' ,
+				'text-align': 'center',
+				'background-color': '#009688',
+				'color': 'white',
+				    'margin-right': '10px'
+						}).text('日')
+						$('#caigou .layadmin-carousel .layui-carousel-ind li').eq(1).css({
+								"border-radius": "0",
+				'width': '22px',
+				'height': '22px',
+				'line-height': '20px',
+				'font-size':'13px' ,
+				'text-align': 'center',
+				'background-color': '#1E9FFF',
+				'color': 'white',
+				 'margin-right': '10px'
+						}).text('周')
+						$('#caigou .layadmin-carousel .layui-carousel-ind li').eq(2).css({
+								"border-radius": "0",
+				'width': '22px',
+				'height': '22px',
+				'line-height': '20px',
+				'font-size':'13px' ,
+				'text-align': 'center',
+				'background-color': '#2F4056',
+				'color': 'white',
+						}).text('月')
+						$('#xiaoshou .layadmin-carousel .layui-carousel-ind li').eq(0).css({
+								"border-radius": "0",
+				'width': '22px',
+				'height': '22px',
+				'line-height': '20px',
+				'font-size':'13px' ,
+				'text-align': 'center',
+				'background-color': '#009688',
+				'color': 'white',
+				    'margin-right': '10px'
+						}).text('日')
+						$('#xiaoshou .layadmin-carousel .layui-carousel-ind li').eq(1).css({
+								"border-radius": "0",
+				'width': '22px',
+				'height': '22px',
+				'line-height': '20px',
+				'font-size':'13px' ,
+				'text-align': 'center',
+				'background-color': '#1E9FFF',
+				'color': 'white',
+				 'margin-right': '10px'
+						}).text('周')
+						$('#xiaoshou .layadmin-carousel .layui-carousel-ind li').eq(2).css({
+								"border-radius": "0",
+				'width': '22px',
+				'height': '22px',
+				'line-height': '20px',
+				'font-size':'13px' ,
+				'text-align': 'center',
+				'background-color': '#2F4056',
+				'color': 'white',
+						}).text('月')
+						
+						//
+						//					response: {
+						//						statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+						//					},
+						//					parseData: function(res) { //将原始数据解析成 table 组件所规定的数据
+						//						return {
+						//							"code": res.status, //解析接口状态
+						//							"msg": res.message, //解析提示文本
+						//							"count": res.total, //解析数据长度
+						//							"data": res.rows.item //解析数据列表
+						//						};
+						//					}
+					});
+					// 基于准备好的dom，初始化echarts实例
+					var mainChart = document.getElementById('main');
+					var myChart = echarts.init(mainChart, 'pattern');
+					var autoContainer = function() {
+						mainChart.style.width = $(".layui-col-md12").clientWidth + 'px';
+					};
+
+					autoContainer(); //设置容器高宽
+					// 指定图表的配置项和数据
+					var option = {
+
+						tooltip: {
+							trigger: 'axis',
+							axisPointer: {
+								type: 'cross',
+								label: {
+									backgroundColor: '#6a7985'
+								}
+							}
+						},
+						legend: {
+							data: ['入库量', '出库量']
+						},
+						color: ['#009688', '#1e9fff'],
+						xAxis: {
+							type: 'category',
+							data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+						},
+						yAxis: {
+							type: 'value'
+						},
+						series: [{
+								name: '入库量',
+								type: 'line',
+								itemStyle: {
+									normal: {
+										lineStyle: {
+											color: '#009688'
+										}
+									}
+								},
+
+								data: [5, 20, 36, 10, 10, 20, 35]
+							},
+							{
+								name: '出库量',
+								type: 'line',
+								itemStyle: {
+									normal: {
+										lineStyle: {
+											color: '#1e9fff'
+										}
+									}
+								},
+								data: [15, 29, 35, 10, 40, 20, 5]
+							}
+						]
+					};
+					// 使用刚指定的配置项和数据显示图表。
+					myChart.setOption(option);
+					window.onresize = function() { //用于使chart自适应高度和宽度
+
+						autoContainer(); //重置容器高宽
+						myChart.resize();
+
+					};
+				</script>
+	</body>
+
+</html>

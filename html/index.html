@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../libs/layui/css/layui.css" />		
+		<style type="text/css">
+			.layui-nav-child dd {
+				position: relative;
+				margin-left: -23px;
+			}
+			
+			.layui-nav-tree .layui-nav-child a {
+				padding-left: 52px;
+			}
+			
+			.layui-nav-child dd dl dd {
+				position: relative;
+				padding-left: 60px;
+			}
+			
+			.layui-header .layui-nav-item .layui-icon {
+				position: relative;
+				top: 1px;
+				font-size: 16px;
+				color: #333;
+			}
+			
+			.themeColor {
+				width: 40%;
+				float: left;
+				position: relative;
+				display: block;
+				padding-right: -28px;
+				padding-top: 20px;
+				padding-left: 20px;
+			}
+			
+			.themeColor img {
+				width: 95%;
+				height: 95%;
+			}
+			
+			.themeColor cite {
+				position: relative;
+				top: 2px;
+				display: block;
+				text-align: center;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<!--添加的弹窗内容-->
+		<!--<div id="addContent" style="display: none; " class="layui-form">
+			<div class="layui-form-item">
+				<ul>
+					<li class='themeColor'>
+						<a href="">
+							<img src="../images/默认.jpg" />
+							<cite>默认主题</cite>
+						</a>
+					</li>
+					<li class='themeColor'>
+						<a href="">
+							<img src="../images/默认.jpg" />
+							<cite>圣诞主题</cite>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="layui-form-item">
+
+			</div>
+
+		</div>-->
+		<div class="layui-layout layui-layout-admin">
+			<!--头部区域-->
+			<div class="layui-header">
+				<div class="layui-logo">进销存系统</div>
+				<!--<ul class="layui-nav layui-layout-left">
+					<li class="layui-nav-item layadmin-flexible" lay-unselect>
+						<a href="javascript:;" title="侧边伸缩" layadmin-event="flexible">
+							<i class=" layui-icon layui-icon-shrink-right" id="toLeft"></i>
+						</a>
+					</li>
+				</ul>-->
+				<ul class="layui-nav layui-layout-right">
+					<!--<li class="layui-nav-item layui-hide-xs" lay-unselect="">
+						<a href="javascript:;" layadmin-event="theme" id="theme">
+							<i class="layui-icon layui-icon-theme"></i>
+						</a>
+					</li>-->
+					<li class="layui-nav-item layui-hide-xs" lay-unselect="">
+						<a href="javascript:;" layadmin-event="fullscreen" id="fullscreen">
+							<i class="layui-icon layui-icon-screen-full"></i>
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="javascript:;" style="color: #333;">
+							<!-- <img src="http://t.cn/RCzsdCq" class="layui-nav-img">-->
+							贤心
+						</a>
+						<dl class="layui-nav-child">
+							<dd style="padding-left: 0px;    margin-left: 0px;">
+								<a href="./SystemSet/Wdsz1.html" target="IMS">基本资料</a>
+							</dd>
+							<dd style="padding-left: 0px;    margin-left: 0px;">
+								<a href="./SystemSet/Wdsz2.html" target="IMS">修改密码</a>
+							</dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item">
+						<a href="" style="color: #333;">退出</a>
+					</li>
+				</ul>
+			</div>
+			<!--左侧导航区域-->
+			<div class="layui-side  layui-bg-black">
+				<div class="layui-side-scroll">
+					<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+					<ul class="layui-nav layui-nav-tree" lay-filter="test">
+						<li class="layui-nav-item layui-nav-itemed">
+							<a href="javascript:;">
+								<i class="layui-icon layui-icon-home"></i> 主页
+							</a>
+							<dl class="layui-nav-child">
+								<dd class="layui-this" id='control'>
+									<a href="./Homepage/control.html" target="IMS">控制台</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item ">
+							<a href="javascript:;">
+								<i class=" layui-icon layui-icon-template"></i> 入库管理
+							</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;">采购入库</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./InboundManage/Cgrk1.html" target="IMS">采购入库</a>
+										</dd>
+										<dd>
+											<a href="./InboundManage/Cgrk2.html" target="IMS">待审核采购单</a>
+										</dd>
+										<dd>
+											<a href="./InboundManage/Cgrk3.html" target="IMS">采购入库查询</a>
+										</dd>
+
+									</dl>
+								</dd>
+								<dd>
+									<a href="javascript:;">生产入库</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./InboundManage/Scrk1.html" target="IMS">生产入库单</a>
+										</dd>
+										<dd>
+											<a href="./InboundManage/Scrk2.html" target="IMS">待审核入库单</a>
+										</dd>
+										<dd>
+											<a href="./InboundManage/Scrk3.html" target="IMS">生产入库单查询</a>
+										</dd>
+
+									</dl>
+								</dd>
+								<dd>
+									<a href="./InboundManage/Rktj.html" target="IMS">入库统计</a>
+
+								</dd>
+								<dd>
+									<a href="javascript:;">采购退货</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./InboundManage/Cgth1.html" target="IMS">采购退货</a>
+										</dd>
+										<dd>
+											<a href="./InboundManage/Cgth2.html" target="IMS">退货审核</a>
+										</dd>
+										<dd>
+											<a href="./InboundManage/Cgth3.html" target="IMS">退货查询</a>
+										</dd>
+								</dd>
+								<dd>
+									<a href="javascript:;">次品返工</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./InboundManage/Cpfg1.html" target="IMS">次品返工</a>
+										</dd>
+										<dd>
+											<a href="./InboundManage/Cpfg2.html" target="IMS">待审核单据</a>
+										</dd>
+										<dd>
+											<a href="./InboundManage/Cpfg3.html" target="IMS">次品返工查询</a>
+										</dd>
+
+									</dl>
+								</dd>
+								<dd>
+									<a href="./InboundManage/Thtj.html" target="IMS">退货统计</a>
+
+								</dd>
+								</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">
+								<i class=" layui-icon layui-icon-component"></i> 出库管理
+							</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;">商品销售</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./OutboundManage/Spxs1.html" target="IMS">商品销售</a>
+										</dd>
+										<dd>
+											<a href="./OutboundManage/Spxs2.html" target="IMS">待审核销售单</a>
+										</dd>
+										<dd>
+											<a href="./OutboundManage/Spxs3.html" target="IMS">商品销售查询</a>
+										</dd>
+
+									</dl>
+								</dd>
+								<dd>
+									<a href="javascript:;">部门领用</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./OutboundManage/Bmly1.html" target="IMS">部门领用单</a>
+										</dd>
+										<dd>
+											<a href="./OutboundManage/Bmly2.html" target="IMS">待审核领用单</a>
+										</dd>
+										<dd>
+											<a href="./OutboundManage/Bmly3.html" target="IMS">部门领用查询</a>
+										</dd>
+										<dd>
+											<a href="./OutboundManage/Bmly4.html" target="IMS">综合查询</a>
+										</dd>
+
+									</dl>
+								</dd>
+								<dd>
+									<a href="./OutboundManage/Cktj.html" target="IMS">出库统计</a>
+
+								</dd>
+								<dd>
+									<a href="javascript:;">顾客退货</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./OutboundManage/Gkth1.html" target="IMS">销售退货</a>
+										</dd>
+										<dd>
+											<a href="./OutboundManage/Gkth2.html" target="IMS">待审核退货单</a>
+										</dd>
+										<dd>
+											<a href="./OutboundManage/Gkth3.html" target="IMS">退货查询</a>
+										</dd>
+
+									</dl>
+								</dd>
+								<dd>
+									<a href="javascript:;">部门退回</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./OutboundManage/Bmth1.html" target="IMS">部门退回单</a>
+										</dd>
+										<dd>
+											<a href="./OutboundManage/Bmth2.html" target="IMS">待审核退回单</a>
+										</dd>
+										<dd>
+											<a href="./OutboundManage/Bmth3.html" target="IMS">部门退回查询</a>
+										</dd>
+
+									</dl>
+								</dd>
+								<dd>
+									<a href="./OutboundManage/Tktj.html" target="IMS">退库统计</a>
+
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">
+								<i class=" layui-icon layui-icon-app"></i> 库存管理
+							</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;">库存盘点</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./InventoryManage/Kcpd1.html" target="IMS">库存盘点单</a>
+										</dd>
+										<dd>
+											<a href="./InventoryManage/Kcpd2.html" target="IMS">待审核盘点单</a>
+										</dd>
+										<dd>
+											<a href="./InventoryManage/Kcpd3.html" target="IMS">库存盘点查询</a>
+										</dd>
+
+									</dl>
+								</dd>
+								<dd>
+									<a href="./InventoryManage/Spkc.html" target="IMS">商品库存</a>
+								</dd>
+								<dd>
+									<a href="javascript:;">库存报警</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./InventoryManage/Kcbj1.html" target="IMS">商品库存量报警</a>
+										</dd>
+										<dd>
+											<a href="./InventoryManage/Kcbj2.html" target="IMS">我方收款提醒</a>
+										</dd>
+									</dl>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">
+								<i class=" layui-icon layui-icon-chart-screen"></i> 统计报表
+							</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="./StatisticalReport/Jxcmx.html" target="IMS">进销存明细</a>
+								</dd>
+								<dd>
+									<a href="./StatisticalReport/Shdzd.html" target="IMS">收货对账单</a>
+								</dd>
+								<dd>
+									<a href="./StatisticalReport/Fhdzd.html" target="IMS">发货对账单</a>
+								</dd>
+								<dd>
+									<a href="./StatisticalReport/Fhcb.html" target="IMS">发货成本</a>
+								</dd>
+								<dd>
+									<a href="./StatisticalReport/Jxchz.html" target="IMS">进销存汇总</a>
+								</dd>
+								<dd>
+									<a href="./StatisticalReport/Xsml.html" target="IMS">销售毛利</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">
+								<i class=" layui-icon layui-icon-rmb"></i> 往来账款
+							</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="./CurrentAccount/Ysdj.html" target="IMS">应收登记</a>
+								</dd>
+								<dd>
+									<a href="./CurrentAccount/Yfdj.html" target="IMS">应付登记</a>
+								</dd>
+								<dd>
+									<a href="./CurrentAccount/Skdj.html" target="IMS">收款登记</a>
+								</dd>
+								<dd>
+									<a href="./CurrentAccount/Fkdj.html" target="IMS">付款登记</a>
+								</dd>
+								<dd>
+									<a href="./CurrentAccount/Yszb.html" target="IMS">应收帐表</a>
+								</dd>
+								<dd>
+									<a href="./CurrentAccount/Yfzb.html" target="IMS">应付帐表</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">
+								<i class=" layui-icon layui-icon-set"></i> 系统设置
+							</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="./SystemSet/Spgl.html" target="IMS">商品管理</a>
+								</dd>
+								<dd>
+									<a href="./SystemSet/Ghssz.html" target="IMS">供货商设置</a>
+								</dd>
+								<dd>
+									<a href="./SystemSet/Khsz.html" target="IMS">客户设置</a>
+								</dd>
+								<dd>
+									<a href="javascript:;">系统设置</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./SystemSet/Xtsz1.html" target="IMS">公司信息</a>
+										</dd>
+										<dd>
+											<a href="./SystemSet/Xtsz2.html" target="IMS">系统参数</a>
+										</dd>
+									</dl>
+								</dd>
+								<dd>
+									<a href="javascript:;">我的设置</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./SystemSet/Wdsz1.html" target="IMS">基本资料</a>
+										</dd>
+										<dd>
+											<a href="./SystemSet/Wdsz2.html" target="IMS">修改密码</a>
+										</dd>
+									</dl>
+								</dd>
+								<dd>
+									<a href="./SystemSet/Czysz.html" target="IMS">操作员设置</a>
+								</dd>
+								<dd>
+									<a href="./SystemSet/Jsgl.html" target="IMS">角色管理</a>
+								</dd>
+								<dd>
+									<a href="./SystemSet/Ztgl.html" target="IMS">账套管理</a>
+								</dd>
+								<dd>
+									<a href="javascript:;">报表设计</a>
+									<dl class="layui-nav-child">
+										<dd>
+											<a href="./SystemSet/Bbsj1.html" target="IMS">表单类</a>
+										</dd>
+										<dd>
+											<a href="./SystemSet/Bbsj2.html" target="IMS">入库管理类</a>
+										</dd>
+										<dd>
+											<a href="./SystemSet/Bbsj3.html" target="IMS">出库管理类</a>
+										</dd>
+										<dd>
+											<a href="./SystemSet/Bbsj4.html" target="IMS">库存管理类</a>
+										</dd>
+										<dd>
+											<a href="./SystemSet/Bbsj5.html" target="IMS">统计报表类</a>
+										</dd>
+										<dd>
+											<a href="./SystemSet/Bbsj6.html" target="IMS">往来账款类</a>
+										</dd>
+										<dd>
+											<a href="./SystemSet/Bbsj7.html" target="IMS">系统设置类</a>
+										</dd>
+									</dl>
+								</dd>
+								<dd>
+									<a href="./SystemSet/Sjbf.html" target="IMS">数据备份</a>
+								</dd>
+								<dd>
+									<a href="./SystemSet/Sjql.html" target="IMS">数据清理</a>
+								</dd>
+								<dd>
+									<a href="./SystemSet/Bmgl.html" target="IMS">部门管理</a>
+								</dd>
+
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--内容主体内容-->
+			<div class="layui-body">
+				<iframe src="./Homepage/control.html" name="IMS" style="width: 100%;height: 100%;display: block" scrolling="auto" frameborder="no"></iframe>
+			</div>
+		</div>
+
+		<script src="../libs/jquery/jquery-1.10.2.js"></script>
+		<script src="../libs/layui/layui.js"></script>
+		<script>
+			//JavaScript代码区域
+			layui.use(['element', 'layer', 'jquery'], function() {
+				var element = layui.element,
+					layer = layui.layer,
+					$ = layui.jquery;
+				/*开启全屏*/
+				$("#fullscreen").on("click", function() {
+					var fullscreenElement =
+						document.fullscreenElement ||
+						document.mozFullScreenElement ||
+						document.webkitFullscreenElement;
+					if(fullscreenElement == null) {
+						entryFullScreen();
+						$(this).children().attr("class","layui-icon layui-icon-screen-restore");
+					} else {
+						exitFullScreen();
+						$(this).children().attr("class","layui-icon layui-icon-screen-full");
+					}
+
+				})
+				/*改变主题*/
+				$('#theme').on("click", function() {
+					layer.open({
+						type: 1,
+						title: ['主题配色', 'font-size:14px;'],
+						area: ['300px', '100%'], //宽高
+						offset: 'r',
+						closeBtn: 0, //关闭按钮不显示
+						shadeClose: true,
+						shade: 0.1,
+						resize: false, //不允许拉伸
+						move: false, //禁止拖动
+						anim: 5,
+						content: $('#addContent'),
+						success: function(layero) {
+							var mask = $(".layui-layer-shade");
+							mask.appendTo(layero.parent());
+							//其中：layero是弹层的DOM对象
+
+						},
+
+					});
+				})
+			});
+			// 进入全屏：
+			function entryFullScreen() {
+				var docE = document.documentElement;
+				if(docE.requestFullScreen) {
+					docE.requestFullScreen();
+				} else if(docE.mozRequestFullScreen) {
+					docE.mozRequestFullScreen();
+				} else if(docE.webkitRequestFullScreen) {
+					docE.webkitRequestFullScreen();
+				}
+			}
+
+			// 退出全屏
+			function exitFullScreen() {
+				var docE = document;
+				if(docE.exitFullscreen) {
+					docE.exitFullscreen();
+				} else if(docE.mozCancelFullScreen) {
+					docE.mozCancelFullScreen();
+				} else if(docE.webkitCancelFullScreen) {
+					docE.webkitCancelFullScreen();
+				}
+			}
+		</script>
+	</body>
+
+</html>

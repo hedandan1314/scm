@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>角色管理</title>
+		<link rel="stylesheet" type="text/css" href="../../libs/layui/css/layui.css" />
+	</head>
+
+	<body>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<span class="layui-breadcrumb">
+  <a href="../Homepage/control.html">主页</a>
+   <a><cite>系统设置</cite></a>
+   <a><cite>角色管理</cite></a>
+</span></div>
+
+		</div>
+		<!--主体内容-->
+		<div style="padding: 15px;    margin-top: -15px;">
+			<div class="layui-card">
+				<!--角色筛选-->
+				<div class="layui-card-header layui-form" style="    padding-top: 15px;
+    padding-bottom: 15px;">
+					<div class="layui-form-item">
+						<div class="layui-inline demoTable">
+							<label class="layui-form-label">角色筛选</label>
+							<div class="layui-input-inline">
+								<select name="interest" lay-filter="aihao">
+									<option value="">全部角色</option>
+									<option value="0">超级管理员</option>
+									<option value="1">普通管理员</option>
+									<option value="2">审核员</option>
+									<option value="3">操作员</option>									
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--表格-->
+				<div class="layui-card-body">
+					<div style="padding-bottom: 10px;">
+						<button class="layui-btn " lay-event="">删除</button>
+								<button class="layui-btn " lay-event="">添加</button>
+					</div>
+					<div class="layui-form">
+						<!--表格部分-->
+						<div class="layui-table-box">
+							<table class="layui-hide" id="test" lay-filter="test">
+
+							</table>						
+							<!--操作-->
+							<script type="text/html" id="barDemo">
+								<!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
+								<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">
+									<i class="layui-icon layui-icon-edit"></i> 编辑
+								</a>
+								<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">
+									<i class="layui-icon layui-icon-delete"></i> 删除
+								</a>
+							</script>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../../libs/jquery/jquery-1.10.2.js"></script>
+		<script src="../../libs/layui/layui.js"></script>
+		<script>
+			layui.use(['element', 'table', 'form','layer'], function() {
+				var element = layui.element,
+					table = layui.table,
+					$ = layui.jquery,
+					form = layui.form,
+					layer = layui.layer;
+				//表单初始赋值
+				table.render({
+					elem: '#test',
+					//					url: '/test/table/demo3.json' //写后台接口交互使用
+					//						,					
+					title: '角色管理表',																				
+					
+					cols: [
+						[{
+								type: 'checkbox',
+								
+							},
+							{
+								field: 'id',
+								title: 'ID',
+								width: '10%',								
+								unresize: true,
+								sort: true,								
+								align: 'center'
+							}, {
+								field: 'username',
+								title: '角色名',
+								width: '15%',
+								edit: 'text',
+								align: 'center'
+							}, {
+								field: 'experience',
+								title: '拥有权限',
+								width: '30%',																
+								align: 'center'
+							}, {
+								field: 'logins',
+								title: '具体描述',
+								width: '30%',																						
+								align: 'center'
+							}, {
+								
+								title: '操作',
+								toolbar: '#barDemo',
+								align: 'center'
+							}
+						]
+					],
+					data: [{
+							"id": "10001",
+							"username": "杜甫",
+							"email": "xianxin@layui.com",
+							"sex": "男",
+							"city": "浙江杭州",
+							"sign": "人生恰似一场修行",
+							"experience": "116",
+							"ip": "192.168.0.8",
+							"logins": "108",
+							"joinTime": "2016-10-14"
+						}, {
+							"id": "10002",
+							"username": "李白",
+							"email": "xianxin@layui.com",
+							"sex": "男",
+							"city": "浙江杭州",
+							"sign": "人生恰似一场修行",
+							"experience": "12",
+							"ip": "192.168.0.8",
+							"logins": "106",
+							"joinTime": "2016-10-14",
+							
+						}, {
+							"id": "10003",
+							"username": "王勃",
+							"email": "xianxin@layui.com",
+							"sex": "男",
+							"city": "浙江杭州",
+							"sign": "人生恰似一场修行",
+							"experience": "65",
+							"ip": "192.168.0.8",
+							"logins": "106",
+							"joinTime": "2016-10-14"
+						}, {
+							"id": "10004",
+							"username": "贤心",
+							"email": "xianxin@layui.com",
+							"sex": "男",
+							"city": "浙江杭州",
+							"sign": "人生恰似一场修行",
+							"experience": "666",
+							"ip": "192.168.0.8",
+							"logins": "106",
+							"joinTime": "2016-10-14"
+						}, {
+							"id": "10005",
+							"username": "贤心",
+							"email": "xianxin@layui.com",
+							"sex": "男",
+							"city": "浙江杭州",
+							"sign": "人生恰似一场修行",
+							"experience": "86",
+							"ip": "192.168.0.8",
+							"logins": "106",
+							"joinTime": "2016-10-14"
+						}, {
+							"id": "10006",
+							"username": "贤心",
+							"email": "xianxin@layui.com",
+							"sex": "男",
+							"city": "浙江杭州",
+							"sign": "人生恰似一场修行",
+							"experience": "12",
+							"ip": "192.168.0.8",
+							"logins": "106",
+							"joinTime": "2016-10-14"
+						}, {
+							"id": "10007",
+							"username": "贤心",
+							"email": "xianxin@layui.com",
+							"sex": "男",
+							"city": "浙江杭州",
+							"sign": "人生恰似一场修行",
+							"experience": "16",
+							"ip": "192.168.0.8",
+							"logins": "106",
+							"joinTime": "2016-10-14"
+						}, {
+							"id": "10008",
+							"username": "贤心",
+							"email": "xianxin@layui.com",
+							"sex": "男",
+							"city": "浙江杭州",
+							"sign": "人生恰似一场修行",
+							"experience": "106",
+							"ip": "192.168.0.8",
+							"logins": "106",
+							"joinTime": "2016-10-14"
+						},
+						{
+							"id": "10008",
+							"username": "贤心",
+							"email": "xianxin@layui.com",
+							"sex": "男",
+							"city": "浙江杭州",
+							"sign": "人生恰似一场修行",
+							"experience": "106",
+							"ip": "192.168.0.8",
+							"logins": "106",
+							"joinTime": "2016-10-14"
+						},
+						{
+							"id": "10008",
+							"username": "贤心",
+							"email": "xianxin@layui.com",
+							"sex": "男",
+							"city": "浙江杭州",
+							"sign": "人生恰似一场修行",
+							"experience": "106",
+							"ip": "192.168.0.8",
+							"logins": "106",
+							"joinTime": "2016-10-14"
+						}
+					],
+					//
+					//					response: {
+					//						statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+					//					},
+					//					parseData: function(res) { //将原始数据解析成 table 组件所规定的数据
+					//						return {
+					//							"code": res.status, //解析接口状态
+					//							"msg": res.message, //解析提示文本
+					//							"count": res.total, //解析数据长度
+					//							"data": res.rows.item //解析数据列表
+					//						};
+					//					}
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

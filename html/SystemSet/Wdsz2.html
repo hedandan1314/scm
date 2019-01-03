@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>库存管理类</title>
+		<link rel="stylesheet" type="text/css" href="../../libs/layui/css/layui.css" />
+	</head>
+
+	<body>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<span class="layui-breadcrumb">
+  <a href="../Homepage/control.html">主页</a>
+   <a><cite>系统设置</cite></a>
+   <a><cite>我的设置</cite></a>
+   <a><cite>修改密码</cite></a>
+</span></div>
+
+		</div>
+
+		<div style="padding: 15px;    margin-top: -15px;">
+			<div class="layui-card">
+				<div class="layui-card-header">修改密码</div>
+				<div class="layui-card-body">
+					<form class="layui-form" lay-filter="myPass">		
+						<!--当前密码-->
+						<div class="layui-form-item">
+							<label class="layui-form-label">当前密码</label>
+							<div class="layui-input-inline">
+								<input type="password" name="passwordNow" placeholder="" autocomplete="off" class="layui-input" readonly>
+							</div>
+						</div>
+						<!--新密码-->
+						<div class="layui-form-item">
+							<label class="layui-form-label">新密码</label>
+							<div class="layui-input-inline">
+								<input type="password" name="passwordNew" placeholder="" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-form-mid layui-word-aux">6到16个字符</div>
+						</div>
+						<!--确认新密码-->
+						<div class="layui-form-item">
+							<label class="layui-form-label">确认新密码</label>
+							<div class="layui-input-inline">
+								<input type="password" name="passwordNewAgain" placeholder="" autocomplete="off" class="layui-input" >
+							</div>
+						</div>
+					
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" lay-submit="" lay-filter="demo1">确认修改</button>					
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script src="../../libs/jquery/jquery-1.10.2.js"></script>
+		<script src="../../libs/layui/layui.js"></script>
+		<script>
+			//JavaScript代码区域
+				layui.use(['element', 'table','form'], function() {
+				var element = layui.element,
+					table = layui.table,
+					 form = layui.form;	
+					 //表单初始赋值
+				form.val('myPass', {
+					"passwordNow": "123456" // "name": "value"
+					
+					
+				})
+			});
+		</script>
+	</body>
+
+</html>
+
+
+

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>采购退货</title>
+		<link rel="stylesheet" type="text/css" href="../../libs/layui/css/layui.css" />
+	<style type="text/css">
+		.layui-layer-btn .layui-layer-btn0{
+	background-color: #009688!important;
+	     border-color: #009688!important;
+	color: #fff;
+}
+	</style>
+	</head>
+
+	<body>
+		<!--添加的弹窗内容-->
+		<div id="addContent" style="display: none; padding: 20px;height: 450px;" class="layui-form">
+			<div class="layui-form-item">
+				<label class="layui-form-label">单号</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nichen" autocomplete="off" class="layui-input" value="YS18121810001" readonly="">
+				</div>
+				<label class="layui-form-label">供货商</label>
+				<div class="layui-input-inline">
+					<select name="kehu" lay-verify="required" lay-search="" id='ghName'>
+						<option value="">请选择</option>
+						<option value="1">客户甲</option>
+						<option value="2">客户乙</option>
+						<option value="3">客户丙</option>
+						<option value="4">客户丁</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">退货日期</label>
+				<div class="layui-input-inline">
+					<input type="text" class="layui-input" id="test6" placeholder=" - ">
+				</div>				
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"></label>
+				<a class="layui-btn layui-btn-primary " id='add1'>
+					<i class="layui-icon layui-icon-add-1"></i> 商品添加
+				</a>								
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-form">
+					<div class="layui-table-box">
+						<table class="layui-hide" id="test2" lay-filter="test">
+
+						</table>
+						<!--操作-->
+						<script type="text/html" id="barDemo2">
+							<!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
+							<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">
+								<i class="layui-icon layui-icon-edit"></i> 编辑
+							</a>
+							
+							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">
+								<i class="layui-icon layui-icon-delete"></i> 删除
+							</a>
+						</script>
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"></label>
+				<div class="layui-input-inline" style="float: right;width: 70px;">
+					<input type="button" lay-submit="" lay-filter="layuiadmin-app-form-submit" value="保存" class="layui-btn" id='subBtn'>
+				</div>
+			</div>
+
+		</div>
+		<div id="addContent2" style="display: none; padding: 20px;height: 300px;" class="layui-form">
+			<div class="layui-form-item">
+					<label class="layui-form-label">选择商品</label>
+				<div class="layui-input-inline">
+					<select name="modules" lay-search id='spName' lay-verify="required">
+						<option value="">请选择</option>
+						<option value="1">客户甲</option>
+						<option value="2">客户乙</option>
+						<option value="3">客户丙</option>
+						<option value="4">客户丁</option>
+						<option value="1">客户甲</option>
+						<option value="2">客户乙</option>
+						<option value="3">客户丙</option>
+						<option value="4">客户丁</option>
+						<option value="1">客户甲</option>
+						<option value="2">客户乙</option>
+						<option value="3">客户丙</option>
+						<option value="4">客户丁</option>
+						<option value="1">客户甲</option>
+					
+					</select>
+				</div>
+				<label class="layui-form-label">商品编号</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nichen" autocomplete="off" class="layui-input" value="" readonly="" >
+				</div>
+				
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">商品名称</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nichen" autocomplete="off" class="layui-input" value="" readonly="">
+				</div>
+				<label class="layui-form-label">规格型号</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nichen" autocomplete="off" class="layui-input" value="" readonly="">
+				</div>
+				
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">单位</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nichen" autocomplete="off" class="layui-input" value="" readonly="">
+				</div>
+			<label class="layui-form-label">当前库存</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nichen" autocomplete="off" class="layui-input" value="" readonly="">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				
+				<label class="layui-form-label">备注</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nichen" autocomplete="off" class="layui-input" value="" readonly="">
+				</div>
+				<label class="layui-form-label">退货单价</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nichen" autocomplete="off" class="layui-input" value="￥" readonly="">
+				</div>
+			</div>
+	
+			<div class="layui-form-item">
+				<label class="layui-form-label">数量</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nichen" autocomplete="off" class="layui-input" value="" >
+				</div>
+				
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label"></label>
+				<div class="layui-input-inline" style="float: right;width: 70px;">
+					<input type="button" lay-submit="" lay-filter="layuiadmin-app-form-submit" value="保存" class="layui-btn" id='subBtn3'>
+				</div>
+			</div>
+
+		</div>		
+			
+		<!--面包屑-->
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<span class="layui-breadcrumb">
+  					<a href="../Homepage/control.html">主页</a>
+   					<a><cite>入库管理</cite></a>
+  				    <a><cite>采购退货</cite></a>
+  					<a><cite>采购退货</cite></a>
+				</span>
+			</div>
+		</div>
+		<!--主体内容-->
+		<div style="padding: 15px;    margin-top: -15px;">
+			<div class="layui-card">
+				<!--表格-->
+				<div class="layui-card-body">
+					<div class="layui-form">
+						<!--表格部分-->
+						<div class="layui-table-box">
+							<table class="layui-hide" id="test" lay-filter="test">
+
+							</table>
+							<!--表格头部工具栏-->
+							<script type="text/html" id="toolbarDemo">
+								<div class="layui-btn-container">
+									<!--<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>-->
+									<button class="layui-btn layui-btn-sm" lay-event="" id='addBtn'>添加</button>
+
+								</div>
+							</script>
+							<!--操作-->
+							<script type="text/html" id="barDemo">
+								<!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
+								<a class="layui-btn  layui-btn-xs" lay-event="edit">
+									<i class="layui-icon layui-icon-edit"></i> 编辑
+								</a>
+								<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="degree">
+									<i class="layui-icon layui-icon-ok"></i> 提交
+								</a>
+								<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">
+									<i class="layui-icon layui-icon-delete"></i> 删除
+								</a>
+							</script>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../libs/jquery/jquery-1.10.2.js"></script>
+		<script src="../../libs/layui/layui.js"></script>
+		<script>
+			//JavaScript代码区域
+			layui.use(['element', 'table', 'laydate', 'layer'], function() {
+				var element = layui.element,
+					table = layui.table,
+					laydate = layui.laydate,
+					layer = layui.layer;
+				table.render({
+					elem: '#test',
+					//					url: '/test/table/demo3.json' //写后台接口交互使用
+					//						,
+					toolbar: true, //显示工具行
+					title: '采购入库表',
+					totalRow: true, //显示合计行
+					page: true, //开启分页
+					limits: [10, 15, 20, 25, 30],
+					toolbar: '#toolbarDemo',
+					cols: [
+						[
+							{
+								field: 'id',
+								title: '单据号',
+								width: '10%',
+								fixed: 'left',
+								unresize: true,
+								sort: true,
+								totalRowText: '合计',
+								align: 'center'
+							}, {
+								field: 'username',
+								title: '开单日期',
+								width:'15%',
+								edit: 'text',
+								align: 'center'
+							}, {
+								field: 'experience',
+								title: '应付金额',
+								width: '10%',
+								sort: true,
+								totalRow: true,
+								align: 'center'
+							}, {
+								field: 'logins',
+								title: '实付金额',
+								width: '10%',
+								sort: true,
+								edit: 'text',
+								totalRow: true,
+								align: 'center'
+							},  {
+								field: 'logins',
+								title: '未付金额',
+								width: '10%',
+								sort: true,
+								edit: 'text',
+								totalRow: true,
+								align: 'center'
+							},{
+								field: 'ip',
+								title: '供货商名称',
+								width: '15%',
+								align: 'center'
+							},{
+								field: 'ip',
+								title: '操作员',
+								width: '15%',
+								align: 'center'
+							}, {
+								field: 'ip',
+								title: '备注',
+								width: '15%',
+								align: 'center'
+							},  {
+								fixed: 'right',
+								title: '操作',
+								toolbar: '#barDemo',
+								width: '15%',
+								align: 'center'
+							}
+						]
+					],
+					data: [{
+							
+						}, {
+							
+
+						}, {
+							
+						}
+					],
+
+					//
+					//					response: {
+					//						statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+					//					},
+					//					parseData: function(res) { //将原始数据解析成 table 组件所规定的数据
+					//						return {
+					//							"code": res.status, //解析接口状态
+					//							"msg": res.message, //解析提示文本
+					//							"count": res.total, //解析数据长度
+					//							"data": res.rows.item //解析数据列表
+					//						};
+					//					}
+				});
+
+				//监听行工具事件
+				table.on('tool(test)', function(obj) {
+					var data = obj.data;
+					//console.log(obj)
+					if(obj.event === 'del') {
+						layer.confirm('确定删除此条应收款吗？', function(index) {
+							obj.del();
+							layer.close(index);
+						});
+					} else if(obj.event === 'edit') {
+						var index4=layer.open({
+							type: 1,
+						title: ['编辑商品', 'font-size:14px;'],
+						area: ['800px', '550px'], //宽高
+						offset: ['120.5px', '197px'],
+						shadeClose: true,
+						shade:0.3,						
+						content: $('#addContent'),
+						}, function(value, index) {
+							obj.update({
+								nichen: value
+							});
+							layer.close(index);
+						});
+										table.render({
+						elem: '#test2',
+						//					url: '/test/table/demo3.json' //写后台接口交互使用								
+						totalRow: true, //显示合计行													
+						cols: [
+							[{
+									type: 'numbers',
+									fixed: 'left'
+								},
+								{
+									field: '1',
+									title: '商品编号',
+									width: '15%',
+									unresize: true,
+									totalRowText: '合计',
+									align: 'center'
+								}, {
+									field: '2',
+									title: '商品名称',
+									width: '15%',
+									align: 'center'
+								}, {
+									field: '3',
+									title: '单位',
+									width: '10%',
+									align: 'center'
+								}, {
+									field: '4',
+									title: '规格型号',
+									width: '15%',
+									align: 'center'
+								}, {
+									field: '5',
+									title: '单价',
+									width: '10%',
+									align: 'center'
+								}, {
+									field: '6',
+									title: '数量',
+									width: '10%',
+									totalRow: true,
+									align: 'center'
+								}, {
+									field: '7',
+									title: '总金额',
+									totalRow: true,
+									width: '10%',
+									align: 'center'
+								}, {
+									field: '8',
+									title: '备注',
+									width: '15%',
+									align: 'center'
+								}, {
+									field: '9',
+									fixed: 'right',
+									title: '操作',
+									toolbar: '#barDemo2',
+									width: '25%',
+									align: 'center'
+								}
+							]
+						],
+						data: [{
+							"1": "20181224",
+							"2": "来了老弟",
+							"3": "人",
+							"4": "男",
+							"5": "55",
+							"6": "55",
+							"7": "55",
+							"8": "55",
+
+						}],
+					});
+						$("#subBtn").on('click',function(){
+						if($('#ghName').val()!=''){
+							
+//							layer.confirm('单据保存后处于"未审核"状态，是否确认保存？处于"未审核"状态的采购单，可以在"待审核采购单"面板中，进行修改及审核操作！', 
+//							{title: '信息提醒',
+//							btn: ['是','否'],
+//							yes:function(index) {
+//							layer.close(index);
+							layer.close(index4);
+//						}
+//						},
+//						);
+						}		
+					})
+					}
+					else if(obj.event === 'degree'){
+						layer.confirm('单据保存后处于"未审核"状态，是否确认保存？处于"未审核"状态的采购单，可以在"待审核采购单"面板中，进行修改及审核操作！', 
+							{title: '信息提醒',
+							btn: ['是','否'],
+							yes:function(index) {
+							layer.close(index);
+							obj.del();
+						}
+						},
+						);
+					}
+				});
+				//日期范围
+
+			laydate.render({
+					elem: '#test6',
+					range: true
+				});
+				//添加弹窗
+				layer.config({
+					extend: 'myskin/style.css', //加载您的扩展样式
+					skin: 'layer-ext-yourskin'
+				});
+				//点击添加按钮弹出弹窗
+				$('#addBtn').on("click", function() {
+					//var index=layer.load();//加载load
+					var index3=layer.open({
+						type: 1,
+						title: ['添加商品', 'font-size:14px;'],
+						area: ['800px', '550px'], //宽高
+						offset: ['120.5px', '197px'],
+						shadeClose: true,
+						shade:0.3,						
+						content: $('#addContent'),
+						success: function(layero) {
+							var mask = $(".layui-layer-shade");
+							mask.appendTo(layero.parent());
+							//其中：layero是弹层的DOM对象
+
+						},
+
+					});
+					/*添加商品点击保存弹出提醒信息进入审核面板*/
+					$("#subBtn").on('click',function(){
+						if($('#ghName').val()!=''){
+							
+//							layer.confirm('单据保存后处于"未审核"状态，是否确认保存？处于"未审核"状态的采购单，可以在"待审核采购单"面板中，进行修改及审核操作！', 
+//							{title: '信息提醒',
+//							btn: ['是','否'],
+//							yes:function(index) {
+//							layer.close(index);
+							layer.close(index3);
+//						}
+//						},
+//						);
+						}		
+					})
+					table.render({
+						elem: '#test2',
+						//					url: '/test/table/demo3.json' //写后台接口交互使用								
+						totalRow: true, //显示合计行													
+						cols: [
+							[{
+									type: 'numbers',
+									fixed: 'left'
+								},
+								{
+									field: '1',
+									title: '商品编号',
+									width: '15%',
+									unresize: true,
+									totalRowText: '合计',
+									align: 'center'
+								}, {
+									field: '2',
+									title: '商品名称',
+									width: '15%',
+									align: 'center'
+								}, {
+									field: '3',
+									title: '单位',
+									width: '10%',
+									align: 'center'
+								}, {
+									field: '4',
+									title: '规格型号',
+									width: '15%',
+									align: 'center'
+								}, {
+									field: '5',
+									title: '单价',
+									width: '10%',
+									align: 'center'
+								}, {
+									field: '6',
+									title: '数量',
+									width: '10%',
+									totalRow: true,
+									align: 'center'
+								}, {
+									field: '7',
+									title: '总金额',
+									totalRow: true,
+									width: '10%',
+									align: 'center'
+								}, {
+									field: '8',
+									title: '备注',
+									width: '15%',
+									align: 'center'
+								}, {
+									field: '9',
+									fixed: 'right',
+									title: '操作',
+									toolbar: '#barDemo2',
+									width: '25%',
+									align: 'center'
+								}
+							]
+						],
+						data: [{
+							"1": "20181224",
+							"2": "来了老弟",
+							"3": "人",
+							"4": "男",
+							"5": "55",
+							"6": "55",
+							"7": "55",
+							"8": "55",
+
+						}],
+					});
+
+				})
+				/*新商品添加*/
+				$('#add1').on('click', function() {
+					var index1 = layer.open({
+						type: 1,
+						title: ['增加商品(采购退货)', 'font-size:14px;'],
+						area: ['704px', '393px'], //宽高
+						offset: ['187.5px', '234px'],
+						shadeClose: true,
+						shade:0.3,
+						content: $('#addContent2'),
+						success: function(index,layero) {
+
+						},
+
+					});
+					$('#subBtn3').on('click', function(index) {	
+						if($('#spName').val()!=''){
+							layer.close(index1);
+						}								
+						})
+				})				
+	
+			});
+		</script>
+	</body>
+
+</html>

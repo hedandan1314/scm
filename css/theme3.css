@@ -1,0 +1,63 @@
+
+<!--头部-->
+.layui-layout-admin .layui-header{
+    background-color: #fff;
+}
+<!--头部移上去下边颜色-->
+.layui-nav .layui-this:after,
+.layui-nav-bar,
+.layui-nav-tree .layui-nav-itemed:after {
+	background-color: #009688;
+}
+<!--头部图标-->
+.layui-header .layui-nav-item .layui-icon {
+    color: #333;
+}
+.layui-nav-item a{
+	 color: #333;
+}
+<!--姓名旁边更多图标-->
+.layui-layout-admin .layui-header .layui-nav .layui-nav-more {
+    border-top-color: #666;
+}
+<!--logo-->
+.layui-layout-admin .layui-logo{
+    background-color: #393D49!important;
+    color: rgba(255, 255, 255, .7);
+}
+<!--左侧栏-->
+.layui-bg-black{
+background-color: #393D49!important;
+    color: #fff!important;
+}
+.layui-nav-itemed>a .layui-nav-more {
+	    border-color: transparent transparent #fff;
+}
+.layui-nav-itemed>.layui-nav-child{
+	    background-color: rgba(0, 0, 0, .3)!important;
+}
+.layui-this{
+	background-color: #009688;
+    color: #fff;
+}
+<!--按钮-->
+	.layui-btn{
+		    background-color: #009688;
+    color: #fff;
+		
+	}
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+	    background-color: #009688;
+}
+body .layer-ext-yourskin .layui-layer-title{
+	    background-color: #009688;
+    color: #fff;
+}
+<!--控制台待办事项数字颜色-->
+.layadmin-backlog-body p cite{
+	color: #009688;
+}
+<!--基本资料单选框按钮色-->
+.layui-form-radio>i:hover, .layui-form-radioed>i{
+	color:#009688;
+}
